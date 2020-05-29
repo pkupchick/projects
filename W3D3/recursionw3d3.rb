@@ -52,7 +52,7 @@ end
 
 
 # Suggestion: Break the methods down into parts..
-
+#sugg
 # Suggestion 2: Try walking through your code with Simple Examples.
 
 # If the n == 256, about how many nested recursive steps will we 
