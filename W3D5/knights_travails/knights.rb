@@ -1,31 +1,36 @@
 require_relative "00_tree_node"
-
+require "byebug"
 class KnightPathFinder
+    attr_reader :considered_positions
+
     def initialize(initial_pos)
-        # @root_node = PolyTreeNode.new(initial_pos)
-        @board = Array.new(8) { Array.new(8) }
+        @start = initial_pos
         @considered_positions = [initial_pos]
     end   
     
+    def self.possible_moves(pos)
+        row, col = pos
+        [[row - 2,col - 1],[row - 2, col + 1],
+        [row - 1,col - 2],[row - 1, col + 2],
+        [row + 1,col - 2],[row + 1, col + 2],
+        [row + 2,col - 1],[row + 2, col + 1]]
+    end
+
     def self.valid_moves(pos)
-        hor = pos[0]
-        vert = pos[1]
-        new_valid_moves = [].uniq
-        (-2..2).each do |i|
-            (-2..2).each do |j|
-                if i != j && i != 0 && j != 0
-                    new_hor = hor + i
-                    new_vert = vert + j
-                end
-                new_valid_moves << [new_hor,new_vert] if (new_hor >= 0 && new_hor <= 7) && (new_vert >= 0 && new_vert <=7)
-            end
+        moves = self.possible_moves(pos)
+        moves.select do |move|
+            move.all? { |pair| pair > -1 && pair < 8 }
         end
-        new_valid_moves
     end    
 
     def new_move_positions(pos)
-        if !@considered_positions.include?(pos) && valid_moves(pos)
-        end
+        moves = KnightPathFinder.valid_moves(pos)
+        new_pot_moves = moves.reject { |move| @considered_positions.include?(move) }
+        @considered_positions += new_pot_moves
+        new_pot_moves
     end
 end
 
+new = KnightPathFinder.new([0,0])
+
+new.considered_positions
