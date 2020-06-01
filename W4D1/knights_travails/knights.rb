@@ -39,18 +39,22 @@ class KnightPathFinder
             moves.each do |move|
                 step_1.add_child(PolyTreeNode.new(move))
             end
-            debugger
             queue += step_1.children 
         end       
     end   
     
     def find_path(final_pos)
-        @root_node.bfs(final_pos)
+        @root.bfs(final_pos)
     end    
 
     def trace_back_path(node)
         path = [node.value]
-        
+        return [node.value] if node.parent.nil?
+        path += trace_back_path(node.parent)
     end    
 end
 
+new = KnightPathFinder.new([0,0])
+new.build_move_tree
+
+p new.trace_back_path(new.find_path([6,2]))
