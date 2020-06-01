@@ -20,7 +20,7 @@ class KnightPathFinder
     def self.valid_moves(pos)
         moves = self.possible_moves(pos)
         moves.select do |move|
-            move.all? { |pair| pair > -1 && pair < 8 }
+            move.all? { |ele| ele > -1 && ele < 8 }
         end
     end    
 
@@ -39,11 +39,18 @@ class KnightPathFinder
             moves.each do |move|
                 step_1.add_child(PolyTreeNode.new(move))
             end
+            debugger
             queue += step_1.children 
         end       
+    end   
+    
+    def find_path(final_pos)
+        @root_node.bfs(final_pos)
+    end    
+
+    def trace_back_path(node)
+        path = [node.value]
+        
     end    
 end
 
-new = KnightPathFinder.new([0,0])
-
-p new.build_move_tree

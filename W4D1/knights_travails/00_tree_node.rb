@@ -22,9 +22,9 @@ class PolyTreeNode
         # end
     end
 
-    # def inspect
-    #     "#<PolyTreeNode: #{self.object_id}>"
-    # end
+    def inspect
+        "#<PolyTreeNode: #{self.object_id}>"
+    end
 
     def add_child(child)
         child.parent = self
