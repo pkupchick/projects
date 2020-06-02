@@ -7,7 +7,7 @@ class Board
     end
 
     def [](pos)
-        x, y = pos
+    x, y = pos
        @board[pos[0]][pos[1]]
     end
 

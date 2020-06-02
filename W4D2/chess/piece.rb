@@ -24,3 +24,8 @@ class NullPiece < Piece
         "   "
     end
 end
+
+#
+# Create seperate class files for each individual piece  
+#
+
