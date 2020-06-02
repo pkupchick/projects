@@ -18,21 +18,21 @@ class Board
     def fill_board
         (0..7).each do |i|
             (0..7).each do |j|
-                # pos = [i, j]
-                board[i][j] = Piece.new if i < 2 
-                board[i][j] = Piece.new if i > 5
+                pos = [i, j]
+                self[pos] = Piece.new(:white) if i < 2 
+                self[pos] = Piece.new(:black) if i > 5
             end
         end
     end 
                 #  1 , 2 [1, 2]
     def move_piece(start_pos, end_pos, color)
-        debugger
+        
         # x1, y1 = start_pos
         # x2, y2 = end_pos
 
-        if @board[end_pos].color != color && valid?(end_pos)
-            @board[end_pos] = @board[start_pos]
-            @board[start_pos] = NullPiece.new 
+        if self[end_pos].color != color && valid?(end_pos)
+            self[end_pos] = self[start_pos]
+            self[start_pos] = NullPiece.new 
         else
             self.move_piece
         end
@@ -42,6 +42,8 @@ class Board
         x, y = pos
         x <= 7 && x >= 0 && y <= 7 && y >= 0
     end
+
+
 end
 
 

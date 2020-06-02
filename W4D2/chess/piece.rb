@@ -1,4 +1,8 @@
 class Piece
+    attr_reader :color
+    def initialize(color)
+        @color = color
+    end
     def present?
       true
     end
@@ -8,7 +12,10 @@ class Piece
     end
 end
   
-class NullPiece
+class NullPiece < Piece
+    def initialize
+        @color = :yellow
+    end
     def present?
         false
     end
