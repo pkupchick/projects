@@ -1,7 +1,9 @@
 class Piece
-    attr_reader :color
-    def initialize(color)
+    attr_reader :color, :position, :board
+    def initialize(color, position, board)
+        @position = position
         @color = color
+        @board = board
     end
     def present?
       true
