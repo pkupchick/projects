@@ -11,4 +11,8 @@ class Bishop < Piece
     def to_s
         " ♝ "
     end
+
+    def symbol
+        "♝".colorize(@color)
+    end
 end

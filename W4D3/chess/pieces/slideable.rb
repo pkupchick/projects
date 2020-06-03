@@ -1,6 +1,5 @@
 module Slideable
- # keep incrementing/decrementing until we hit
- #
+
     HORIZONTAL_DIRS = [
         [-1, 0],
         [0, -1],
@@ -14,7 +13,6 @@ module Slideable
         [1,-1],
         [1,1]
     ]
-
 
     def moves
         moves = []
@@ -34,27 +32,14 @@ module Slideable
         HORIZONTAL_DIRS
     end
     
-    # private
+    #private
 
-    def grow_unblocked_moves_in_diagnol(start_pos)
-        # [4,4]
-        moves = []
+    
 
-        (0...8).each do |i|            
-         moves << [i+-1 , +0]
-        end
-
-        moves
-    end
-
-    # base case x = 0 
-
-
-    def grow_unblocked_moves_in_dir(xd, yd) # 3, 3 => 2, 3 => 1, 3 => 0, 3
+    def grow_unblocked_moves_in_dir(xd, yd) 
         start_pos = self.position
         x, y = start_pos
         moves = []
-        # horizontal_dirs.each do |xd, yd| #  [-1, 0]
             while x < 7 && x > 0 && y < 7 && y > 0
                 x += xd
                 y += yd

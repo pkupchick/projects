@@ -4,14 +4,14 @@ class Pawn < Piece
     def symbol
         " ♟ "
     end
-
+    
     def to_s
         if color == :white
             " ♟ "
         else
             " ♙ "
         end
-      end
+    end
 end
 
 # WHITE if the position pawn row 1 then moves can do two steps col + 2 or 1

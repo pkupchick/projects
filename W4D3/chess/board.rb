@@ -1,5 +1,6 @@
 require_relative "./pieces/piece.rb"
 require "byebug"
+
 class Board
     attr_reader :board
     def initialize
@@ -15,12 +16,16 @@ class Board
         @board[pos[0]][pos[1]] = value
     end
 
-    def fill_board
+    def fill_board 
+        #white 
+        #R1   # Rook, Knight, Bishop , Queen, King, Bishop, Knight, Rook 
+        #R2   # Pawns -------------------------------------------------->
+        #black
         (0..7).each do |i|
             (0..7).each do |j|
                 pos = [i, j]
-                self[pos] = Piece.new(:white, pos, self) if i < 2 
-                self[pos] = Piece.new(:black, pos, self) if i > 5
+                self[pos] = Piece.new(:white, pos, self) if i == 1 
+                self[pos] = Piece.new(:black, pos, self) if i == 6
             end
         end
 

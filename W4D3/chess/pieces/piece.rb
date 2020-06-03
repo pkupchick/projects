@@ -10,7 +10,11 @@ class Piece
     end
   
     def to_s
-      " ♟️ "
+      " ♟ "
+    end
+
+    def symbol
+        "♟".colorize(@color)
     end
 end
   
@@ -22,8 +26,12 @@ class NullPiece < Piece
         false
     end
 
-    def to_s
-        "   "
+    # def to_s
+    #     "   "
+    # end
+
+    def symbol
+        " ".colorize(@color)
     end
 end
 

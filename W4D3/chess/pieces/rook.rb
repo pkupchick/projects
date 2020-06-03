@@ -10,5 +10,9 @@ class Rook < Piece
 
     def to_s
         " ♜ "
-      end
+    end
+
+    def symbol
+        "♜".colorize(@color)
+    end
 end
