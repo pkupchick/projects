@@ -20,7 +20,7 @@ module Slideable
         moves = []
         move_dirs.each do |directions|
             x, y = directions
-            moves << grow_unblocked_moves_in_dir(x, y)
+            moves += grow_unblocked_moves_in_dir(x, y)
         end
         moves
     end
@@ -55,12 +55,15 @@ module Slideable
         x, y = start_pos
         moves = []
         # horizontal_dirs.each do |xd, yd| #  [-1, 0]
-            while x <= 7 && x >= 0 && y <= 7 && y >= 0
-                next_position = [x+xd ,y+yd]
+            while x < 7 && x > 0 && y < 7 && y > 0
+                x += xd
+                y += yd
+                next_position = [x ,y]
                 if self.board[next_position].is_a?(NullPiece) 
                     moves << next_position 
                 elsif self.board[next_position].color != self.color
                     moves << next_position
+                    break
                 else
                     break
                 end

@@ -31,3 +31,6 @@ end
 # Create seperate class files for each individual piece  
 #
 
+# load "pieces/queen.rb"
+
+# [2] pry(main)> load "board.rb"

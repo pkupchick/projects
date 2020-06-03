@@ -19,10 +19,12 @@ class Board
         (0..7).each do |i|
             (0..7).each do |j|
                 pos = [i, j]
-                self[pos] = Piece.new(:white) if i < 2 
-                self[pos] = Piece.new(:black) if i > 5
+                self[pos] = Piece.new(:white, pos, self) if i < 2 
+                self[pos] = Piece.new(:black, pos, self) if i > 5
             end
         end
+
+        # 
     end 
                 #  1 , 2 [1, 2]
     def move_piece(start_pos, end_pos, color)
