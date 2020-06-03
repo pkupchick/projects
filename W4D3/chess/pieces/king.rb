@@ -18,8 +18,8 @@ include Stepable
     end
 end
 
-b = Board.new
-b.fill_board
-kt = King.new(:white, [3,3], b)
-b[[3,3]] = kt
-p kt.moves
+# b = Board.new
+# b.fill_board
+# kt = King.new(:white, [3,3], b)
+# b[[3,3]] = kt
+# p kt.moves
