@@ -7,7 +7,7 @@ class Deck
     end
 
     def fill_deck
-        values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" ]
+        values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
         suits = [:♠, :♥, :♦, :♣]
         suits.each do |suit|
             values.each do |value|
@@ -34,5 +34,9 @@ class Deck
             cards[card.value] += 1
         end
         cards.values.all? { |card| card == 4  }
+    end
+
+    def shuffle
+        deck.shuffle!
     end
 end
