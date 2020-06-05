@@ -14,12 +14,36 @@ h2 {
   font-size: 32px;
 }
 
+
+/* table tr:nth-last-child() {
+  background-color: gold;
+} */
+
 /* This selector selects ALL anchor tag children of ALL list elements that
 are children of an Unordered List element */
 ul li a {
   text-decoration: none;
   color: inherit;
 }
+
+input[type="radio"] {
+  -webkit-appearance: none;
+  background-image: url(./stars.png);
+  width: 20px;
+  height: 20px;
+    }
+
+input[type="selected"] {
+  cursor: pointer; 
+  outline: none;
+  
+  }
+input[type="submit"]:last-child {
+  background-color: gold;
+  cursor: pointer; 
+  outline: none;
+  
+  }
 
 /* This selector selects all image elements that are children (1 level deep)
 of a header element */
@@ -36,11 +60,23 @@ header > img {
 
 ol {
   list-style: upper-roman inside;
+  
+}
+
+ol li:nth-of-type(2n) {
+  background-color: lightgrey;
 }
 
 .user_review h4 {
   font-size: 18px;
   font-weight: bold;
 }
+
+h1 + .user_review  {
+    border-top-style: solid;
+    border-color: black;
+    border-top-width: 1px;
+}
+
 
 
