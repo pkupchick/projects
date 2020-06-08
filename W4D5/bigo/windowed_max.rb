@@ -1,4 +1,4 @@
-# O(n) time
+# O(n) time or is this O(n^2)??
 # O(n) spcae as hash grows in proportion to array size
 
 def windowed_max_range(arr, size)
