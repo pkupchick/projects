@@ -1,3 +1,6 @@
+# O(n) time
+# O(n) spcae as hash grows in proportion to array size
+
 def windowed_max_range(arr, size)
     hash = Hash.new(0)
     i = 0
