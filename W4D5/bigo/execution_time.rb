@@ -22,8 +22,17 @@ def largest_contiguous_subsum(arr)
 end
 
 def largest_contiguous_subsum_1(arr)
+  champ = arr.first
+  contender = arr.first
 
+  (1...arr.length).each do |i|
+    contender = 0 if contender < 0
+    contender += arr[i]
+    champ = contender if contender > champ
+  end
+
+  champ
 end
 
-p largest_contiguous_subsum([-5, -1, -3])
+p largest_contiguous_subsum_1([-5, -1, -3])
 
