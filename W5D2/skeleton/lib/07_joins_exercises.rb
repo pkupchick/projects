@@ -131,7 +131,7 @@ def prolific_actors
     castings.ord = 1
   GROUP BY
     actors.name
-  HAVING
+  HAVINGvb
     COUNT(actors.name) >= 15
   ORDER BY
     actors.name
