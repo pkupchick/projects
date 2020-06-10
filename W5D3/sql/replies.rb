@@ -1,4 +1,4 @@
-class Users
+class Replies
 
     def self.all
         data = QuestionsDatabase.instance.execute("SELECT * FROM users")

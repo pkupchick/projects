@@ -1,21 +1,24 @@
-class Users
+require_relative 'questions_database.rb'
+
+class Questions
 
     def self.all
-        data = QuestionsDatabase.instance.execute("SELECT * FROM users")
-        data.map { |datum| Users.new(datum)}
+        data = QuestionsDatabase.instance.execute("SELECT * FROM questions")
+        data.map { |datum| Questions.new(datum)}
     end
 
     def initialize(hash)
         @id = hash['id']
-        @f_name = hash['f_name']
-        @l_name = hash['l_name']
+        @title = hash['title']
+        @body = hash['body']
+        @users_id = hash['users_id']
     end
 
     def create
-        raise "User already exists" if @id
-        QuestionsDatabase.instance.execute(<<-SQL, @f_name, @l_name)
+        raise "Question already exists" if @id
+        QuestionsDatabase.instance.execute(<<-SQL, @title, @body, @users_id)
             INSERT INTO
-                users (f_name, l_name)
+                questions (f_name, l_name)
             VALUES
                 (?, ?)
         SQL
@@ -23,15 +26,15 @@ class Users
     end
 
     def self.find_by_id(ids)
-        users = QuestionsDatabase.instance.execute(<<-SQL, ids)
+        questions = QuestionsDatabase.instance.execute(<<-SQL, ids)
             SELECT
                 *
             FROM
-                users
+                questions
             WHERE
-                users.id = ?
+                questions.id = ?
         SQL
-        users.empty? ? nil : Users.new(users.first)
+        questions.empty? ? nil : Questions.new(questions.first)
     end
 
 end
