@@ -6,10 +6,10 @@ DROP TABLE IF EXISTS question_follows;
 
 PRAGMA foreign_keys = ON;
 
-CREATE TABLE users(
+CREATE TABLE users (
     id INTEGER PRIMARY KEY,
     f_name VARCHAR(255) NOT NULL,
-    l_name VARCHAR(255) NOT NULL,
+    l_name VARCHAR(255) NOT NULL
 );
 
 INSERT INTO
@@ -19,7 +19,7 @@ VALUES
     ('Austin', 'Wong'),
     ('Peter', 'Kupchick');
 
-CREATE TABLE questions(
+CREATE TABLE questions (
     id INTEGER PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     body TEXT NOT NULL,
@@ -30,25 +30,23 @@ CREATE TABLE questions(
 
 INSERT INTO
     questions(title, body, users_id)
-
 VALUES
-    ('a/A Tuition', 'How much is it?', (SELECT id FROM users WHERE f_name = 'Austin'))
-    ('Graduation Rate', 'What percentage of students graduate?', (SELECT id FROM users WHERE l_name = 'Kupchick'))
+    ('a/A Tuition', 'How much is it?', (SELECT id FROM users WHERE f_name = 'Austin')),
+    ('Graduation Rate', 'What percentage of students graduate?', (SELECT id FROM users WHERE l_name = 'Kupchick'));
 
-CREATE TABLE question_follows(
+CREATE TABLE question_follows (
     id INTEGER PRIMARY KEY,
     users_id INTEGER NOT NULL,
     questions_id INTEGER NOT NULL,
 
-    FOREIGN KEY (users_id) REFERENCES users(id)
+    FOREIGN KEY (users_id) REFERENCES users(id),
     FOREIGN KEY (questions_id) REFERENCES questions(id)
 );
 INSERT INTO
     question_follows (users_id, questions_id)
-
 VALUES
-    ((SELECT id FROM users WHERE f_name = 'Austin'),(SELECT id FROM questions WHERE users_id = 1))
-    ((SELECT id FROM users WHERE l_name = 'Kupchick'),(SELECT id FROM questions WHERE users_id = 2))
+    ((SELECT id FROM users WHERE f_name = 'Austin'),(SELECT id FROM questions WHERE users_id = 1)),
+    ((SELECT id FROM users WHERE l_name = 'Kupchick'),(SELECT id FROM questions WHERE users_id = 2));
 
 
 CREATE TABLE replies (
@@ -65,19 +63,18 @@ CREATE TABLE replies (
 
 INSERT INTO
     replies(question_id, parent_reply_id, users_id, body)
-
 VALUES
     ((SELECT id FROM questions WHERE title = "a/A Tuition"),
     NULL,
-    1,"A lot don't worry about it")
-    (2,NULL,2,"100%")
+    1,"A lot don't worry about it"),
+    (2,NULL,2,"100%");
 
-CREATE TABLE question_likes(
+CREATE TABLE question_likes (
     id INTEGER PRIMARY KEY,
     users_id INTEGER NOT NULL,
     questions_id INTEGER NOT NULL,
 
-    FOREIGN KEY (users_id) REFERENCES users(id)
+    FOREIGN KEY (users_id) REFERENCES users(id),
     FOREIGN KEY (questions_id) REFERENCES questions(id)
 );
 
@@ -86,5 +83,5 @@ INSERT INTO
 VALUES
     (
     (SELECT id FROM users WHERE f_name = 'Austin'),
-    (SELECT id, FROM questions WHERE title = 'a/A Tuition')
+    (SELECT id FROM questions WHERE title = 'a/A Tuition')
     );
