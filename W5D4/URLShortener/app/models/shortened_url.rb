@@ -9,7 +9,12 @@ class ShortenedUrl < ApplicationRecord
     end 
 
     def create_short_url(user, long_url)
-        ShortenedUrl.create!(:short_url => ShortenedUrl.random_code)
+        ShortenedUrl.create!(:short_url => ShortenedUrl.random_code, :long_url => long_url, :user_id => user.id)
     end 
 
+    belongs_to :submitter,
+        primary_key: :id,
+        foreign_key: :user_id,
+        class_name: 'User',
+        optional: true
 end
