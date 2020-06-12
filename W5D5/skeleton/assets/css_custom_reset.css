@@ -7,6 +7,11 @@ html, body, div, span, h1, h2, h3, h4, a, ol, ul, li, form, label, article, asid
   vertical-align: baseline;
 }
 
+.shakshukah {
+  width: 100%
+}
+]
+
 body {
   line-height: 1.5;
 }

@@ -1,1 +1,9 @@
 /* PUT FLUID GRID CODE HERE */
+
+.col-1 {
+    width: 25%;
+}
+
+.col-2-4 {
+    width: 75;
+}
