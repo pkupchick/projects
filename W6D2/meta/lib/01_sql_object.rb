@@ -21,12 +21,10 @@ class SQLObject < DBConnection
   def self.finalize!
     self.columns.each do |column|
       define_method(column) do
-        self.instance_variable_get("@#{column}")
-        # self.attributes[name]
+        self.attributes[column]
       end
       define_method("#{column}=") do |value|
-        self.instance_variable_set("@#{column}", value)
-        # self.attributes[name] = value
+        self.attributes[column] = value
       end
     end
 
@@ -37,7 +35,7 @@ class SQLObject < DBConnection
   end
 
   def self.table_name
-    @table_name.nil? ? self.to_s.downcase + 's' : @table_name
+    @table_name || self.name.underscore.pluralize
   end
 
   def self.all
@@ -53,7 +51,14 @@ class SQLObject < DBConnection
   end
 
   def initialize(params = {})
-    # ...
+    params.each do |attr_name, value|
+      attr_name = attr_name.to_sym
+      if self.class.columns.include?(attr_name)
+        self.send("#{attr_name}=", value)
+      else
+        raise "unknown attribute '#{attr_name}'"
+      end
+    end
   end
 
   def attributes
