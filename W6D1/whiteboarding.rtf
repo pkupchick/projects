@@ -1,0 +1,161 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww14120\viewh14180\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 # == Schema Information\uc0\u8232 #\u8232 # Table name: users\u8232 #\u8232 #  id   :integer                not null, primary key\u8232 #  name :string                 not null\u8232 \u8232 \u8232 # Table name: enrollments\u8232 #\u8232 #  id   :integer                not null, primary key\u8232 #  course_id :integer           not null\u8232 #  student_id :integer          not null\u8232 \u8232 \u8232 # Table name: courses\u8232 #\u8232 #  id   :integer                not null, primary key\u8232 #  course_name :string          not null\u8232 #  professor_id :integer        not null\u8232 #  prereq_course_id :integer    not null\
+\
+\
+User has_many :enrollments\
+	foreign_key: :student_id\
+	class_name: :Enrollment\
+\
+Enrollments belongs_to :user,\
+	foreign_key: :student_id,\
+	class_name: :User\
+\
+Enrollments belongs_to: :course,\
+	foreign_key: :course_id,\
+	class_name: Course\
+\
+Course has_many :enrollments,\
+	foreign_key: :course_id,\
+	class_name: :Enrollment\
+\
+Course belongs_to: :prerequisites,\
+	foreign_key: :prereq_course_id,\
+	class_name: :Course\
+	optional: true\
+\
+Course has_many: :pre_req_courses,\
+	foreign_key: : :pre_req_course_id,\
+	class_name: :Course\
+	\
+User has_many :courses_taught,\
+	foreign_key: :professor_id,\
+	class_name: :Course\
+\
+\
+\
+\
+FROM and JOINS\
+WHERE,\
+GROUP BY,\
+HAVING,\
+SELECT,\
+DISTINCT,\
+ORDER BY\
+LIMIT/OFFSET\
+\
+\
+\
+# == Schema Information\uc0\u8232 #\u8232 # Table name: nobels\u8232 #\u8232 #  yr          :integer\u8232 #  subject     :string\u8232 #  winner      :string\
+\
+SELECT \
+	nobels.yr\
+FROM \
+	nobels\
+WHERE\
+	nobels.subect = \'91Physics\'92 AND nobels.yr = (\
+	select\
+	nobels.yr\
+	from\
+	nobels\
+	where\
+	nobels.subject != \'93Chemistry\'94\
+\
+)\
+\
+\
+\
+\
+\
+\
+From tdonahue to Everyone: (10:22 AM)\
+\
+# == Schema Information\uc0\u8232 #\u8232 # Table name: user\u8232 #\u8232 #  id   :integer          not null, primary key\u8232 #  name :string           not null\u8232 \u8232 \u8232 # Table name: score\u8232 #\u8232 #  id   :integer           not null, primary key\u8232 #  number :integer         not null\u8232 #  user_id :integer        not null\u8232 #  game_id :integer        not null\u8232 \u8232 \u8232 # Table name: game\u8232 #\u8232 #  id   :integer           not null, primary key\u8232 #  name :string            not null\u8232 #  game_maker_id :integer  not null\
+\
+\
+Score\
+	belongs_to :game,\
+	foreign_key: :game_id,\
+	class_name: :Game\
+\
+	belongs_to :user\
+	foreign_key: :user_id,\
+	class_name: :User\
+\
+\
+Game\
+	has_many :scores,\
+	foreign_key: :game_id\
+	class_name: :Score\
+\
+	belongs_to :game_maker,\
+	foreign_key: :game_maker_id,\
+	class_name: :User\
+\
+\
+\
+USER\
+	has_many :scores,\
+	foreign_key: :user_id,\
+	class_name: :Score]\
+\
+	has_many: :games_made\
+	foreign_key: :game_maker_id,\
+	class_name: :Game\
+	optional: true\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+}

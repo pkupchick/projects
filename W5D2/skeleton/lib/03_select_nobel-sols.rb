@@ -30,18 +30,19 @@ def prizes_from_1950
       nobels
     WHERE
       nobels.yr = 1950
+
   SQL
 end
 
 def literature_1962
   # Show who won the 1962 prize for Literature.
   execute(<<-SQL)
-    SELECT
-      nobels.winner
-    FROM
-      nobels
-    WHERE
-      nobels.subject = 'Literature' AND nobels.yr = 1962
+  SELECT
+    nobels.winner
+  FROM
+    nobels
+  WHERE
+    nobels.subject = 'Literature' AND nobels.yr = 1962
   SQL
 end
 
@@ -60,12 +61,12 @@ end
 def millennial_peace_prizes
   # Give the name of the 'Peace' winners since the year 2000, including 2000.
   execute(<<-SQL)
-    SELECT
-      nobels.winner
-    FROM
-      nobels
-    WHERE
-      nobels.yr >= 2000 AND nobels.subject = 'Peace'
+  SELECT
+    nobels.winner
+  FROM
+    nobels
+  WHERE
+    nobels.yr >= 2000 AND nobels.subject = 'Peace'
   SQL
 end
 
@@ -78,7 +79,7 @@ def eighties_literature
     FROM
       nobels
     WHERE
-      nobels.subject = 'Literature' AND nobels.yr BETWEEN 1980 AND 1989
+      nobels.yr BETWEEN 1980 AND 1989 AND nobels.subject = 'Literature'
   SQL
 end
 
@@ -86,14 +87,12 @@ def presidential_prizes
   # Show all details of the presidential winners: ('Theodore Roosevelt',
   # 'Woodrow Wilson', 'Jimmy Carter')
   execute(<<-SQL)
-    SELECT
-      *
-    FROM
-      nobels
-    WHERE
-      nobels.winner IN  ('Theodore Roosevelt', 'Woodrow Wilson', 'Jimmy Carter')
-
-
+  SELECT
+    *
+  FROM
+    nobels
+  WHERE
+    nobels.winner IN ('Theodore Roosevelt', 'Woodrow Wilson', 'Jimmy Carter')
   SQL
 end
 

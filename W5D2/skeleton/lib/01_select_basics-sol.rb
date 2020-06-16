@@ -17,7 +17,7 @@ def example_select
     FROM
       countries
     WHERE
-      name = 'Germany'
+      name = 'France'
   SQL
 end
 
@@ -28,7 +28,7 @@ def select_population_of_germany
     FROM
       countries
     WHERE
-      name = 'Germany';
+      name = 'Germany'
   SQL
 end
 
@@ -36,7 +36,7 @@ def per_capita_gdp
   # Show the name and per capita gdp (gdp/population) for each country where
   # the area is over 5,000,000 km^2
   execute(<<-SQL)
-    SELECT
+    SELECT 
       countries.name, (countries.gdp/ countries.population) AS "per capita gdp"
     FROM
       countries
@@ -54,7 +54,7 @@ def small_and_wealthy
     FROM
       countries
     WHERE
-      countries.area < 2000 AND countries.gdp > 5000000000
+      countries.area < 2000 AND countries.gdp > 5000000000;
   SQL
 end
 
@@ -62,12 +62,12 @@ def scandinavia
   # Show the name and the population for 'Denmark', 'Finland', 'Norway', and
   # 'Sweden'
   execute(<<-SQL)
-    SELECT
-      countries.name, countries.population
-    FROM
-      countries
-    WHERE
-      countries.name = 'Denmark' OR countries.name = 'Finland' OR countries.name = 'Norway' OR countries.name = 'Sweden'
+  SELECT
+    countries.name, countries.population
+  FROM
+    countries
+  WHERE
+    countries.name = 'Denmark' OR countries.name = 'Finland' OR countries.name = 'Norway' OR countries.name = 'Sweden'
   SQL
 end
 
@@ -88,11 +88,11 @@ def just_the_right_size
   # with an area between 200,000 and 250,000.
   # BETWEEN allows range checking - note that it is inclusive.
   execute(<<-SQL)
-    SELECT
-      countries.name, countries.area / 1000
-    FROM
-      countries
-    WHERE
-      countries.area BETWEEN 200000 AND 250000
+  SELECT
+    countries.name, (countries.area / 1000)
+  FROM
+    countries    
+  WHERE
+    countries.area BETWEEN 200000 AND 250000
   SQL
 end

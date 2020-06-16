@@ -24,7 +24,7 @@ def continents
   execute(<<-SQL)
     SELECT
       DISTINCT countries.continent
-    FROM
+    FROM  
       countries
   SQL
 end
@@ -32,12 +32,12 @@ end
 def africa_gdp
   # Give the total GDP of Africa.
   execute(<<-SQL)
-    SELECT
-      SUM(countries.gdp)
-    FROM
-      countries
-    WHERE
-      countries.continent = 'Africa'
+  SELECT
+    SUM(countries.gdp)
+  FROM
+    countries
+  WHERE
+    countries.continent = 'Africa'
   SQL
 end
 
@@ -56,24 +56,24 @@ end
 def group_population
   # What is the total population of ('France','Germany','Spain')?
   execute(<<-SQL)
-    SELECT
-      SUM(countries.population)
-    FROM
-      countries
-    WHERE
-      countries.name IN ('France', 'Germany', 'Spain')
+  SELECT
+    SUM(countries.population)
+  FROM
+    countries
+  WHERE
+    countries.name IN ('France', 'Germany', 'Spain')
   SQL
 end
 
 def country_counts
   # For each continent show the continent and number of countries.
   execute(<<-SQL)
-    SELECT
-      countries.continent, COUNT(countries.name)
-    FROM
-      countries
-    GROUP BY
-      countries.continent
+  SELECT
+    countries.continent, COUNT(countries.name)
+  FROM
+    countries
+  GROUP BY
+    countries.continent
   SQL
 end
 
@@ -95,13 +95,13 @@ end
 def populous_continents
   # List the continents that have a total population of at least 100 million.
   execute(<<-SQL)
-    SELECT
-      countries.continent
-    FROM
-      countries
-    GROUP BY
-      countries.continent
-    HAVING
-      SUM(countries.population) > 100000000
+  SELECT
+    countries.continent
+  FROM
+    countries
+  GROUP BY
+    countries.continent
+  HAVING
+    SUM(countries.population) >= 100000000
   SQL
 end
